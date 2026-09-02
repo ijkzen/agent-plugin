@@ -38,11 +38,11 @@ Five **state** roles:
 
 For a PR, the same states read against the attached code: `ready-for-agent` means a brief is attached and an agent should take the next step on the diff; `ready-for-human` means it's ready for a human to merge.
 
-Every triaged issue should carry exactly one category role and one state role. If state roles conflict, flag it and ask the maintainer before doing anything else.
+Every triaged issue should carry exactly one category role and one state role. If state roles conflict, flag it and call `AskUserQuestion` before doing anything else: "State roles conflict on this issue — how should I resolve it?" Options: `needs-info` ("Mark it needing info from the reporter"), `ready-for-agent` ("It's actionable — mark ready for an agent"), `ready-for-human` ("It needs human judgment"), `wontfix` ("It should be closed as won't-fix").
 
 These are canonical role names. The actual label strings used in the issue tracker may differ. The mapping should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
 
-State transitions: an unlabeled issue normally goes to `needs-triage` first; from there it moves to `needs-info`, `ready-for-agent`, `ready-for-human`, or `wontfix`. `needs-info` returns to `needs-triage` once the reporter replies. The maintainer can override at any time; flag transitions that look unusual and ask before proceeding.
+State transitions: an unlabeled issue normally goes to `needs-triage` first; from there it moves to `needs-info`, `ready-for-agent`, `ready-for-human`, or `wontfix`. `needs-info` returns to `needs-triage` once the reporter replies. The maintainer can override at any time; flag transitions that look unusual and call `AskUserQuestion` before proceeding: "This transition looks unusual — proceed?" Options: `Yes, apply it` ("The maintainer's intent is clear"), `No, double-check` ("Let me confirm the right state first").
 
 ## Invocation
 
@@ -87,7 +87,7 @@ Show counts and a one-line summary per item. Let the maintainer pick.
 
 ## Quick state override
 
-If the maintainer says "move #42 to ready-for-agent", trust them and apply the role directly. Confirm what you're about to do (role changes, comment, close), then act. Skip grilling. If moving to `ready-for-agent` without a grilling session, ask whether they want to write an agent brief.
+If the maintainer says "move #42 to ready-for-agent", trust them and apply the role directly. Confirm what you're about to do (role changes, comment, close), then act. Skip grilling. If moving to `ready-for-agent` without a grilling session, call `AskUserQuestion`: "Want me to write an agent brief for this?" Options: `Yes, write a brief` ("Create an AGENT-BRIEF so an agent can pick it up"), `No, just label it` ("Apply ready-for-agent without a brief").
 
 ## Needs-info template
 

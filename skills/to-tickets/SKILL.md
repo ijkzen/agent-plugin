@@ -47,11 +47,11 @@ Present the proposed breakdown as a numbered list. For each ticket, show:
 - **Blocked by**: which other tickets (if any) must complete first
 - **What it delivers**: the end-to-end behaviour this ticket makes work
 
-Ask the user:
+Call `AskUserQuestion` (multiSelect can be used per item, or ask up to 3 questions in one call):
 
-- Does the granularity feel right? (too coarse / too fine)
-- Are the blocking edges correct: does each ticket only depend on tickets that genuinely gate it?
-- Should any tickets be merged or split further?
+- Question 1: "Does the granularity feel right?" Options: `Just right` ("Proceed with this breakdown"), `Too coarse` ("Split some tickets further"), `Too fine` ("Merge some tickets together")
+- Question 2: "Are the blocking edges correct?" Options: `Yes` ("Each ticket only depends on tickets that genuinely gate it"), `No` ("Some dependencies are wrong — I'll point them out")
+- Question 3: "Should any tickets be merged or split?" Options: `No changes` ("Keep as-is"), `Yes` ("I'll specify which to merge/split")
 
 Iterate until the user approves the breakdown.
 

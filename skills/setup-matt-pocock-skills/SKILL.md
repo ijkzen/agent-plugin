@@ -44,21 +44,21 @@ Default posture: these skills were designed for GitHub. If a `git remote` points
 - **GitHub**: issues live in the repo's GitHub Issues (uses the `gh` CLI)
 - **GitLab**: issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
 - **Local markdown**: issues live as files under `.scratch/<feature>/` in this repo (good for solo projects or repos without a remote)
-- **Other** (Jira, Linear, etc.): ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
+- **Other** (Jira, Linear, etc.): call `AskUserQuestion` with an open prompt — question "Which issue tracker workflow do you use?", options `Jira` ("Describe your Jira board and workflow"), `Linear` ("Describe your Linear project and workflow"), `Other tracker` ("I'll describe it in my own words"). The user's answer (typed freeform or picked) is recorded as freeform prose in `docs/agents/issue-tracker.md`.
 
 Record the choice in `docs/agents/issue-tracker.md`. The GitHub and GitLab templates carry a "PRs as a request surface" flag, defaulted **off**. Leave it off and don't raise it: a user who wants external PRs in the triage queue can flip the flag in the file later.
 
 **Section B: Triage label vocabulary.** Skip this section entirely if the `triage` skill isn't installed (exploration told you), since an uninstalled skill needs no labels.
 
-If it is installed, ask exactly one question:
+If it is installed, call `AskUserQuestion` with exactly one question:
 
-> Do you want to keep the default triage labels? (recommended: **yes**)
+> Question: "Do you want to keep the default triage labels?" Options: `Yes, keep defaults` ("Write the five canonical labels as-is: needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix" — recommended), `No, custom labels` ("I'll provide the label names my tracker already uses").
 
 The defaults are the five canonical roles, each label string equal to its name: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. On **yes**, write them as-is. Only if the user says no, usually because their tracker already uses other names (e.g. `bug:triage` for `needs-triage`), collect the overrides so `triage` applies existing labels instead of creating duplicates.
 
 **Section C: Domain docs.** Default to **single-context** (one `CONTEXT.md` + `docs/adr/` at the repo root). This fits almost every repo; write it without asking.
 
-Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files) only when exploration found monorepo signals. Then confirm which layout they want.
+Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files) only when exploration found monorepo signals. Then call `AskUserQuestion` to confirm which layout they want: "Which domain-doc layout?" Options: `Single-context` ("One root CONTEXT.md + docs/adr/ — fits almost every repo", recommended), `Multi-context` ("CONTEXT-MAP.md pointing to per-context CONTEXT.md files — for this monorepo").
 
 ### 3. Confirm and edit
 
@@ -75,7 +75,7 @@ Let them edit before writing.
 
 - If `CLAUDE.md` exists, edit it.
 - Else if `AGENTS.md` exists, edit it.
-- If neither exists, ask the user which one to create; don't pick for them.
+- If neither exists, call `AskUserQuestion` to ask which one to create; don't pick for them. Question: "Neither CLAUDE.md nor AGENTS.md exists — which should I create?" Options: `CLAUDE.md` ("Create CLAUDE.md — Claude Code's memory file"), `AGENTS.md` ("Create AGENTS.md — multi-agent memory file").
 
 Never create `AGENTS.md` when `CLAUDE.md` already exists (or vice versa); always edit the one that's already there.
 

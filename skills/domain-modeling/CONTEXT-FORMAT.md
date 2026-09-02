@@ -57,4 +57,4 @@ The skill infers which structure applies:
 - If only a root `CONTEXT.md` exists, single context
 - If neither exists, create a root `CONTEXT.md` lazily when the first term is resolved
 
-When multiple contexts exist, infer which one the current topic relates to. If unclear, ask.
+When multiple contexts exist, infer which one the current topic relates to. If unclear, call `AskUserQuestion`: "Which context does this topic belong to?" — one option per known context from `CONTEXT-MAP.md`, plus `New context` ("Start a new context") if the topic fits none.

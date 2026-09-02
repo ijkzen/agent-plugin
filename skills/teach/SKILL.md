@@ -72,11 +72,11 @@ A shared stylesheet is the first component every workspace earns: every lesson l
 
 Every lesson should be tied into the mission - the reason that the user is interested in learning about the topic.
 
-If the user is unclear about the mission, or the `MISSION.md` is not populated, your first job should be to question the user on why they want to learn this.
+If the user is unclear about the mission, or the `MISSION.md` is not populated, your first job should be to call `AskUserQuestion` on why they want to learn this: "What's your goal in learning <topic>?" — options like `Career / work` ("I need it for my job or projects"), `Personal interest` ("I'm curious and want to explore"), `Specific outcome` ("I want to achieve a concrete result — I'll describe it"), and let them type the real reason.
 
 Failing to understand the mission will mean knowledge acquisition is not grounded in real-world goals. Lessons will feel too abstract. You will have no way of judging what the user should do next.
 
-Missions may change as the user develops more skills and knowledge. This is normal - make sure to update the `MISSION.md` and add a learning record to capture the change. Confirm with the user before changing the mission.
+Missions may change as the user develops more skills and knowledge. This is normal - make sure to update the `MISSION.md` and add a learning record to capture the change. Confirm via `AskUserQuestion` before changing the mission: "Your mission seems to have evolved — update it?" Options: `Yes, update mission` ("Rewrite MISSION.md to match your new goals"), `No, keep current` ("Leave the mission as-is").
 
 ## Zone Of Proximal Development
 

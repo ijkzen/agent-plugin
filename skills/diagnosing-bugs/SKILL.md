@@ -13,7 +13,7 @@ When exploring the codebase, read `CONTEXT.md` (if it exists) to get a clear men
 
 This skill has you show commands, outputs and captured artifacts. **Redact every secret first**: write `<REDACTED>` in its place. Build loops against env vars, so the credential stays in the environment rather than in what you show. Captured artifacts carry auth headers: quote only the lines that carry the signal.
 
-If the redacted output is not enough to diagnose the bug, say so and ask the user.
+If the redacted output is not enough to diagnose the bug, say so, then call `AskUserQuestion`: "The captured output isn't enough to pinpoint this. How do you want to proceed?" Options: `Share more output` ("I'll paste additional redacted logs/artifacts"), `Grant environment access` ("I'll give you access to the reproducing environment"), `Let me guess` ("Proceed with a hypothesis based on what we have").
 
 ## Phase 1: Build a feedback loop
 
@@ -52,7 +52,7 @@ The goal is not a clean repro but a **higher reproduction rate**. Loop the trigg
 
 ### When you genuinely cannot build a loop
 
-Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a redacted captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Do **not** proceed to hypothesise without a loop.
+Stop and say so explicitly. List what you tried. Then call `AskUserQuestion` (multiSelect true) to get what you need to build a loop: "I can't build a reproduction loop from here. What can you provide?" Options: `Environment access` ("Access to whatever environment reproduces it"), `Captured artifact` ("A redacted HAR file, log dump, core dump, or screen recording with timestamps"), `Production instrumentation` ("Permission to add temporary production instrumentation"). Do **not** proceed to hypothesise without a loop.
 
 ### Completion criterion: a tight loop that goes red
 

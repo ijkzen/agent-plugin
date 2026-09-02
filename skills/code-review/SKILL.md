@@ -16,7 +16,7 @@ The issue tracker should have been provided to you. If `docs/agents/issue-tracke
 
 ### 1. Pin the fixed point
 
-Whatever the user said is the fixed point (a commit SHA, branch name, tag, `main`, `HEAD~5`, etc.). If they didn't specify one, ask for it.
+Whatever the user said is the fixed point (a commit SHA, branch name, tag, `main`, `HEAD~5`, etc.). If they didn't specify one, call `AskUserQuestion` with a single question: "Which fixed point should I review against?" and options like: `main` ("Review changes on the current branch since main"), `HEAD~5` ("Review the last 5 commits"), the most recent tag (`git describe --tags --abbrev=0`, label it with that tag's name), and `merge-base` ("Review only commits unique to this branch"). Let the user pick or type their own ref.
 
 Capture the diff command once: `git diff <fixed-point>...HEAD` (three-dot, so the comparison is against the merge-base). Also note the list of commits via `git log <fixed-point>..HEAD --oneline`.
 
@@ -29,7 +29,7 @@ Look for the originating spec, in this order:
 1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.), fetched via the workflow in `docs/agents/issue-tracker.md`.
 2. A path the user passed as an argument.
 3. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
-4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
+4. If nothing is found, call `AskUserQuestion` to ask where the spec lives: "I couldn't find a spec for these changes. Where is it?" with options like `docs/specs` ("Point me to the specs directory"), `no spec` ("There is no spec — skip the Spec axis"), and `search harder` ("Search the repo more broadly for a matching spec"). If the user says there isn't one, the **Spec** sub-agent will skip and report "no spec available".
 
 ### 3. Identify the standards sources
 
