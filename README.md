@@ -10,7 +10,7 @@ This plugin depends on three plugins from three different marketplaces:
 
 | Dependency | Marketplace | Version (verified) |
 |---|---|---|
-| `frontend-design` | `claude-code-plugins` (Anthropic official) | 1.1.0 |
+| `frontend-design` | `claude-plugins-official` (Anthropic official) | 1.1.0 |
 | `context7` | `claude-plugins-official` (Anthropic official) | latest |
 | `ponytail` | `ponytail` (DietrichGebert/ponytail) | 4.9.0 |
 

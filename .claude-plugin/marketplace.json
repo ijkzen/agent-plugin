@@ -7,7 +7,6 @@
     "url": "https://github.com/ijkzen"
   },
   "allowCrossMarketplaceDependenciesOn": [
-    "claude-code-plugins",
     "claude-plugins-official",
     "ponytail"
   ],

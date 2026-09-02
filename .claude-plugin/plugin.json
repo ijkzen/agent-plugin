@@ -17,7 +17,7 @@
   "dependencies": [
     {
       "name": "frontend-design",
-      "marketplace": "claude-code-plugins"
+      "marketplace": "claude-plugins-official"
     },
     {
       "name": "context7",
