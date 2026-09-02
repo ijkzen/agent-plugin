@@ -1,0 +1,15 @@
+{
+  "description": "agent-plugin hooks",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/scripts/codegraph-sync.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

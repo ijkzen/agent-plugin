@@ -65,6 +65,12 @@ claude mcp get tavily_proxy
 
 If a required variable is unset, `claude mcp list` shows a missing-variable warning and the server uses the literal `${VAR}` text — set the variable and restart Claude Code.
 
+## Hooks
+
+| Hook | Script | Behavior |
+|---|---|---|
+| `SessionStart` | `scripts/codegraph-sync.sh` | On session start: if the current project is a git work tree, keep its codegraph index fresh — run `codegraph sync` if `.codegraph/` exists (already initialized), else `codegraph init` once. Silent (no output); no-op outside git repos or when the `codegraph` CLI is missing. |
+
 ## Installation
 
 ```bash
@@ -86,6 +92,10 @@ agent-plugin/
 │   ├── plugin.json        # manifest (with dependencies)
 │   └── marketplace.json   # marketplace manifest (allowCrossMarketplaceDependenciesOn)
 ├── .mcp.json              # MCP server definitions (secrets via env vars)
+├── hooks/
+│   └── hooks.json         # SessionStart → codegraph-sync.sh
+├── scripts/
+│   └── codegraph-sync.sh  # silent codegraph init/sync on session start
 ├── README.md
 └── LICENSE
 ```
