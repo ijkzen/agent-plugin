@@ -1,6 +1,26 @@
 {
   "description": "agent-plugin hooks",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh ${CLAUDE_PLUGIN_ROOT}/scripts/deny-websearch.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh ${CLAUDE_PLUGIN_ROOT}/scripts/deny-webfetch.sh"
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "hooks": [

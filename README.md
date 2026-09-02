@@ -70,6 +70,10 @@ If a required variable is unset, `claude mcp list` shows a missing-variable warn
 | Hook | Script | Behavior |
 |---|---|---|
 | `SessionStart` | `scripts/codegraph-sync.sh` | On session start: if the current project is a git work tree, keep its codegraph index fresh — run `codegraph sync` if `.codegraph/` exists (already initialized), else `codegraph init` once. Silent (no output); no-op outside git repos or when the `codegraph` CLI is missing. |
+| `PreToolUse` (WebSearch) | `scripts/deny-websearch.sh` | Denies the system `WebSearch` tool and redirects the model to the Tavily search tool (`tavily-search`). |
+| `PreToolUse` (WebFetch) | `scripts/deny-webfetch.sh` | Denies the system `WebFetch` tool and redirects the model to the Tavily extract tool (`tavily-extract`). |
+
+> The redirect tool names are intentionally **unprefixed** (e.g. `tavily-search`, not `mcp__<server>__tavily-search`) so the model resolves the closest matching tool in whatever harness runs this plugin — including non-Claude-Code harnesses that support the plugin format.
 
 ## Installation
 
