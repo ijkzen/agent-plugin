@@ -15,7 +15,12 @@
       "name": "agent-plugin",
       "description": "Agent plugin bundling frontend-design, context7, and ponytail",
       "source": "./",
-      "category": "development"
+      "category": "development",
+      "dependencies": [
+        "frontend-design@claude-plugins-official",
+        "context7@claude-plugins-official",
+        "ponytail@ponytail"
+      ]
     }
   ]
 }
