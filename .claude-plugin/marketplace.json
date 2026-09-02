@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "agent-plugin-marketplace",
+  "description": "Marketplace for agent-plugin — a Claude Code plugin bundling frontend-design, context7, and ponytail capabilities",
+  "owner": {
+    "name": "ijkzen",
+    "url": "https://github.com/ijkzen"
+  },
+  "allowCrossMarketplaceDependenciesOn": [
+    "claude-code-plugins",
+    "claude-plugins-official",
+    "ponytail"
+  ],
+  "plugins": [
+    {
+      "name": "agent-plugin",
+      "description": "Agent plugin bundling frontend-design, context7, and ponytail",
+      "source": "./",
+      "category": "development"
+    }
+  ]
+}

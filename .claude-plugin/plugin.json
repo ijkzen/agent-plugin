@@ -1,8 +1,8 @@
 {
   "name": "agent-plugin",
   "displayName": "Agent Plugin",
-  "version": "1.0.0",
-  "description": "Agent tools & workflow plugin for Claude Code: task runner, code review, and automated quality hooks",
+  "version": "0.1.0",
+  "description": "Agent plugin bundling frontend-design, context7, and ponytail capabilities",
   "author": {
     "name": "ijkzen",
     "url": "https://github.com/ijkzen"
@@ -10,8 +10,22 @@
   "homepage": "https://github.com/ijkzen/agent-plugin",
   "repository": "https://github.com/ijkzen/agent-plugin",
   "license": "MIT",
-  "keywords": ["claude-code", "plugin", "agent", "workflow", "code-quality"],
+  "keywords": ["claude-code", "plugin", "agent", "frontend-design", "context7", "ponytail"],
   "metadata": {
     "catalogId": "agent-plugin"
-  }
+  },
+  "dependencies": [
+    {
+      "name": "frontend-design",
+      "marketplace": "claude-code-plugins"
+    },
+    {
+      "name": "context7",
+      "marketplace": "claude-plugins-official"
+    },
+    {
+      "name": "ponytail",
+      "marketplace": "ponytail"
+    }
+  ]
 }
