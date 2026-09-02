@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "luma-vision": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "luma-mcp"],
+      "env": {
+        "MODEL_PROVIDER": "custom",
+        "CUSTOM_BASE_URL": "${LUMA_BASE_URL:-https://gateway.ijkzen.cn/v1}",
+        "CUSTOM_API_KEY": "${LUMA_API_KEY}",
+        "CUSTOM_MODEL_NAME": "${LUMA_MODEL_NAME:-deepseek-v4-flash-vision-exp}",
+        "CUSTOM_PATH": "/chat/completions"
+      }
+    },
+    "tavily_proxy": {
+      "type": "http",
+      "url": "https://tavily.ijkzen.cn/mcp?key=${TAVILY_API_KEY}"
+    },
+    "codegraph-mcp": {
+      "type": "stdio",
+      "command": "codegraph",
+      "args": ["serve", "--mcp"]
+    }
+  }
+}
